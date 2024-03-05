@@ -1,5 +1,5 @@
 {
-  "name": "loa-homework",
+  "name": "clear",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,8 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react": "^17.0.19",
+    "axios": "^1.6.7",
+    "graphql": "^16.8.1",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  },
+  "description": "- 로스트아크 숙제 검사 사이트 제작중!!",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
