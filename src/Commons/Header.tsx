@@ -1,5 +1,4 @@
 import { css, jsx } from "@emotion/react"
-import '../../styles/Home.module.css'
 import {HeaderBox} from '../Emotion/HeaderEmotion'
 import { InnerBox } from "../Emotion/HeaderEmotion"
 
@@ -10,7 +9,7 @@ export default function Header():JSX.Element {
             <HeaderBox>
                 {/* 왼쪽 부분 */}
                 <InnerBox>
-                    <h2>프로젝트 이름</h2>
+                    <h2>LOA_H</h2>
                     <span>내 숙제</span>
                 </InnerBox>
 

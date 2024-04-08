@@ -2,7 +2,6 @@ import styled from "@emotion/styled"
 
 export const HeaderBox = styled.div`
     width: 100%;
-    border: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: space-between;
