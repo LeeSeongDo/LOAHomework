@@ -1,20 +1,25 @@
 import { css, jsx } from "@emotion/react"
+import '../../styles/Home.module.css'
 import {HeaderBox} from '../Emotion/HeaderEmotion'
+import { InnerBox } from "../Emotion/HeaderEmotion"
+
 
 export default function Header():JSX.Element {
     return (
-        <HeaderBox> 
-            {/* 왼쪽 부분 */}
-            <div>
-                <h1>로아 숙제검사</h1>
-                <h3>숙제검사하기</h3>
-            </div>
+        <div>
+            <HeaderBox>
+                {/* 왼쪽 부분 */}
+                <InnerBox>
+                    <h2>프로젝트 이름</h2>
+                    <span>내 숙제</span>
+                </InnerBox>
 
-            {/* 오른쪽 부분 */}
-            <div>
-                <h3>모드변경</h3>
-                <h3>로그인</h3>
-            </div>
-        </HeaderBox>
+                {/* 오른쪽 부분 */}
+                <InnerBox>
+                    <h3>모드변경</h3>
+                    <h3>로그인</h3>
+                </InnerBox>
+            </HeaderBox>
+        </div>
     )
 }
