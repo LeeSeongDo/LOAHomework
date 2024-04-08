@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { SearchCharacter } from "./api/SearchCharacter";
+import LostArkNotice from "../src/Components/LostArkNotice";
 
 export default function Home() {
 
@@ -30,6 +31,7 @@ export default function Home() {
   }
   return (
     <>
+      <LostArkNotice></LostArkNotice>
       <div>이 페이지는 메인 페이지</div>
       <input type="text" placeholder="닉네임을 적어주세요." onChange={WriteName} />
       <button onClick={handleSearch}>찾기</button>
