@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { NoticeBox, NoticeElement, NoticeType, NoticeTitle } from "../Emotion/NoticeEmotion";
 import { format} from "date-fns";
+import { v4 as uuidv4 } from 'uuid';
 import Link from "next/link";
 
 export default function LostArkNotice():JSX.Element {
@@ -34,11 +35,13 @@ export default function LostArkNotice():JSX.Element {
 
     return (
         <NoticeBox>
-            {Notice.map((data) =>  {
+            {Notice.map((data, index) =>  {
                 const formatMap = format(data.Date, 'yyyy-MM-dd');
+                const uniqueKey = uuidv4();
+              
                 
                 return (
-                    <NoticeElement>
+                    <NoticeElement key={uniqueKey}>
                         <NoticeType>{data.Type}</NoticeType>
                         <NoticeTitle>{data.Title}</NoticeTitle>
                         <span>{formatMap}</span>
