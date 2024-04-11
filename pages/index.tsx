@@ -5,6 +5,7 @@ import { SearchCharacter } from "./api/SearchCharacter";
 import LostArkNotice from "../src/Components/LostArkNotice";
 import MyCharacter_Main from "../src/Components/MyCharacter_Main";
 import LostArkEvent from "../src/Components/LostArkEvent";
+import Modal from "../src/Commons/Modal";
 
 export default function Home() {
   const [Nickname, setNickName] = useState("");
@@ -40,6 +41,8 @@ export default function Home() {
         placeholder="닉네임을 적어주세요."
         onChange={WriteName}
       />
+      <Modal></Modal>
+
       <LostArkEvent></LostArkEvent>
     </>
   );
