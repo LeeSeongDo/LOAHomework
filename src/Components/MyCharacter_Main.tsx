@@ -2,6 +2,7 @@ import { MouseEventHandler, useEffect, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { CharacterInfo } from "../../pages/api/CharacterInfo";
+import { ActiveServerFont, MyCharacterBox, PassiveServerFont } from "../Emotion/ServerListEmotion";
 
 export default function MyCharacter_Main() {
   // 캐릭터 리스트를 저장하는 변수.
@@ -12,18 +13,19 @@ export default function MyCharacter_Main() {
 
   // 필터링 된 결과값을 저장하는 변수
   const [FilterCharacterInfo, setFilterCharacterInfo] = useState([]);
-
-  // 캐릭터 정보 가져오는 API
  
+  const [ActiveServerName, setActiveServerName] = useState('');
 
   // 서버별 필터링 이벤트
   const FilteringEvent: MouseEventHandler<HTMLSpanElement> = (event) => {
     const serverName = event.currentTarget.textContent;
-    console.log(serverName);
+    setActiveServerName(serverName);
 
     setFilterCharacterInfo(
       CharacterList.filter((data) => data.ServerName === serverName)
     );
+
+    
   };
 
   useEffect(() => {
@@ -31,20 +33,29 @@ export default function MyCharacter_Main() {
   }, []);
 
   return (
-    <div>
-
+    <MyCharacterBox>
       {ServerList?.map((data) => {
         const uniqueKey = uuidv4();
-
-        return (
-          <span
-            key={uniqueKey}
-            style={{ padding: "0px 10px", fontSize: "18px", cursor: "pointer" }}
-            onClick={FilteringEvent}
-          >
+        console.log(ActiveServerName === data)
+        if(ActiveServerName === data) {
+          return (
+            <ActiveServerFont
+              key={uniqueKey}
+              onClick={FilteringEvent}
+            >
+              {data}
+            </ActiveServerFont>
+          );
+        } else {
+          return (
+            <PassiveServerFont
+              key={uniqueKey}
+              onClick={FilteringEvent}
+            >
             {data}
-          </span>
-        );
+            </PassiveServerFont>
+          )
+        }
       })}
 
       <hr></hr>
@@ -52,6 +63,6 @@ export default function MyCharacter_Main() {
         const uniqueKey = uuidv4();
         return <p key={uniqueKey}>{data.CharacterName}</p>;
       })}
-    </div>
+    </MyCharacterBox>
   );
 }
