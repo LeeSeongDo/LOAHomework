@@ -30,8 +30,7 @@ export default function MyCharacter_Main() {
                 setServerList(extraServerName)
             }
             ServerCheck();
-            console.log(ServerList);
-
+            
         } catch(error)
         {
             console.log(error);
