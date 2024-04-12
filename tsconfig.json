@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/api/SearchCharacter.js", "src/Emotion/HeaderEmotion.ts"  ],
+, "pages/api/SearchCharacter.ts", "src/Emotion/HeaderEmotion.ts"  ],
   "exclude": [
     "node_modules"
   ]
