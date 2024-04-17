@@ -31,7 +31,8 @@ export default function MyCharacter_Main() {
   // 활성화 된 서버의 이름
   const [ActiveServerName, setActiveServerName] = useState("");
 
-  // 프로필 이미지
+  // 프로필 데이터
+  const [ProfileData, setProfileData] = useState([]);
 
   // 서버별 필터링 이벤트
   const FilteringEvent: MouseEventHandler<HTMLSpanElement> = (event) => {
@@ -46,6 +47,13 @@ export default function MyCharacter_Main() {
   useEffect(() => {
     CharacterInfo(setCharacterList, setServerList);
   }, []);
+
+  useEffect(() => {
+    FilterCharacterInfo.map((data) => {
+      CharacterProfileAPI(data.CharacterName, setProfileData, ProfileData);
+    });
+    console.log(ProfileData);
+  }, [FilterCharacterInfo]);
 
   return (
     <MyCharacterBox>
@@ -73,19 +81,18 @@ export default function MyCharacter_Main() {
         {FilterCharacterInfo?.map((data) => {
           const uniqueKey = uuidv4();
 
-          const profileImage = "테스트";
+          const profileImage = "테스트"; // 임시로 설정된 프로필 이미지
 
-          const profileImageFunction = async () => {
-            try {
-              const response = await CharacterProfileAPI(data.CharacterName);
-              // profileImage 함수가 완료되었을 때 실행될 콜백 함수 호출
-            } catch (error) {
-              console.log(error);
-            }
-          };
-
-          profileImageFunction();
-
+          // CharacterProfileAPI(data.CharacterName)
+          //   .then((response) => {
+          //     profileResponse = response; // 응답을 저장
+          //     console.log(profileResponse);
+          //     data2.push(response.CharacterClassName);
+          //   })
+          //   .catch((error) => {
+          //     console.log(error); // 에러 처리
+          //   });
+          // console.log(data2);
           return (
             <CharacterInfoBox key={uniqueKey}>
               <CharacterImageArea>{profileImage}</CharacterImageArea>

@@ -1,6 +1,10 @@
 import axios from "axios";
 
-export const CharacterProfileAPI = async (NickName) => {
+export const CharacterProfileAPI = async (
+  NickName,
+  setProfileData,
+  ProfileData
+) => {
   try {
     const response = await axios.get(
       `https://developer-lostark.game.onstove.com/armories/characters/${NickName}/profiles`,
@@ -10,7 +14,7 @@ export const CharacterProfileAPI = async (NickName) => {
         },
       }
     );
-    return response.data.CharacterImage;
+    setProfileData([response.data, ...ProfileData]);
   } catch (error) {
     console.log(error);
   }
