@@ -43,6 +43,11 @@ export default function MyCharacter_Main() {
     setFilterCharacterInfo(
       CharacterList.filter((data) => data.ServerName === serverName)
     );
+
+    let test = FilterCharacterInfo.sort(
+      (a, b) => Number(b.ItemAvgLevel) - Number(a.ItemAvgLevel)
+    );
+    console.log(test);
   };
 
   useEffect(() => {
@@ -100,8 +105,6 @@ export default function MyCharacter_Main() {
           const CharacterImage = CharacterImageData.filter(
             (data) => data.name === test[0]?.CharacterClassName
           );
-
-          console.log(CharacterImage);
           return (
             <CharacterInfoBox key={uniqueKey}>
               <CharacterImageArea

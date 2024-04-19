@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+type characterImage = {
+  characterImage: string;
+};
+
 export const CharacterInfoBox = styled.div`
   width: 150px;
   display: flex;
@@ -12,11 +16,16 @@ export const CharacterImageArea = styled.div`
   width: 80px;
   height: 80px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 3px solid gray;
   border-radius: 100%;
   background-size: cover;
-  background-image: url(${(props) => props.characterImage});
+  background-image: url(${(props: characterImage) => props.characterImage});
+  transition: 0.3s;
   cursor: pointer;
+
+  :hover {
+    border: 3px solid #00ffa3;
+  }
 `;
 
 export const CharacterInfoTextArea = styled.div`
