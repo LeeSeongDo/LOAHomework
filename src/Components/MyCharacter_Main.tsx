@@ -40,14 +40,21 @@ export default function MyCharacter_Main() {
     const serverName = event.currentTarget.textContent;
     setActiveServerName(serverName);
 
-    setFilterCharacterInfo(
-      CharacterList.filter((data) => data.ServerName === serverName)
+    // 서버 필터 변수
+    const serverFilter = CharacterList.filter(
+      (data) => data.ServerName === serverName
     );
 
-    let test = FilterCharacterInfo.sort(
-      (a, b) => Number(b.ItemAvgLevel) - Number(a.ItemAvgLevel)
+    // 레벨 내림차순 필터.
+    // ???.replace("지우려는 내용", "대체하려는 내용")
+
+    const LevelSort = serverFilter.sort(
+      (a, b) =>
+        parseFloat(b.ItemAvgLevel.replace(",", "")) -
+        parseFloat(a.ItemAvgLevel.replace(",", ""))
     );
-    console.log(test);
+
+    setFilterCharacterInfo(LevelSort);
   };
 
   useEffect(() => {
@@ -65,11 +72,12 @@ export default function MyCharacter_Main() {
         );
         setProfileData(profileDataArray);
       } catch (error) {
-        console.error("Error fetching profile data:", error);
+        console.error(error);
       }
     };
 
     fetchData();
+    console.log(FilterCharacterInfo);
   }, [FilterCharacterInfo]);
 
   return (
