@@ -49,20 +49,21 @@ export default function MyCharacter_Main() {
   }, []);
 
   useEffect(() => {
-    const test = [];
-    console.log(FilterCharacterInfo);
-    FilterCharacterInfo.map((data) => {
-      const testValue = CharacterProfileAPI(data.CharacterName); // 이게 response라고 생각하기.
-      const getData = () => {
-        testValue.then((data) => {
-          test.push(data.data);
-          setProfileData(test);
-        });
-      };
+    const fetchData = async () => {
+      try {
+        const profileDataArray = await Promise.all(
+          FilterCharacterInfo.map(async (data) => {
+            const response = await CharacterProfileAPI(data.CharacterName);
+            return response.data;
+          })
+        );
+        setProfileData(profileDataArray);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
 
-      getData();
-      console.log(ProfileData);
-    });
+    fetchData();
   }, [FilterCharacterInfo]);
 
   return (
@@ -91,11 +92,22 @@ export default function MyCharacter_Main() {
         {FilterCharacterInfo?.map((data) => {
           const uniqueKey = uuidv4();
 
-          const profileImage = "테스트"; // 임시로 설정된 프로필 이미지
+          const testName = "";
+          const test = ProfileData.filter(
+            (data2) => data.CharacterName === data2.CharacterName
+          );
+
+          console.log(test);
 
           return (
             <CharacterInfoBox key={uniqueKey}>
-              <CharacterImageArea>{profileImage}</CharacterImageArea>
+              <CharacterImageArea
+                onClick={() => {
+                  console.log(ProfileData);
+                }}
+              >
+                {test[0]?.CharacterClassName}
+              </CharacterImageArea>
               <CharacterInfoTextArea>
                 <NickName>{data.CharacterName}</NickName>
                 <ItemLevel>{data.ItemAvgLevel}</ItemLevel>
