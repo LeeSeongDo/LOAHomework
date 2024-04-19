@@ -17,6 +17,7 @@ import {
 import { wrap } from "module";
 import { CharacterProfileAPI } from "../../pages/api/CharacterProfile";
 import { rejects } from "assert";
+import { CharacterImageData } from "../../pages/Data/CharacterImage";
 
 export default function MyCharacter_Main() {
   // 캐릭터 리스트를 저장하는 변수.
@@ -92,22 +93,20 @@ export default function MyCharacter_Main() {
         {FilterCharacterInfo?.map((data) => {
           const uniqueKey = uuidv4();
 
-          const testName = "";
           const test = ProfileData.filter(
             (data2) => data.CharacterName === data2.CharacterName
           );
 
-          console.log(test);
+          const CharacterImage = CharacterImageData.filter(
+            (data) => data.name === test[0]?.CharacterClassName
+          );
 
+          console.log(CharacterImage);
           return (
             <CharacterInfoBox key={uniqueKey}>
               <CharacterImageArea
-                onClick={() => {
-                  console.log(ProfileData);
-                }}
-              >
-                {test[0]?.CharacterClassName}
-              </CharacterImageArea>
+                characterImage={CharacterImage[0]?.image}
+              ></CharacterImageArea>
               <CharacterInfoTextArea>
                 <NickName>{data.CharacterName}</NickName>
                 <ItemLevel>{data.ItemAvgLevel}</ItemLevel>

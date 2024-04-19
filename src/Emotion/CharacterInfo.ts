@@ -14,6 +14,9 @@ export const CharacterImageArea = styled.div`
   box-sizing: border-box;
   border: 1px solid black;
   border-radius: 100%;
+  background-size: cover;
+  background-image: url(${(props) => props.characterImage});
+  cursor: pointer;
 `;
 
 export const CharacterInfoTextArea = styled.div`
