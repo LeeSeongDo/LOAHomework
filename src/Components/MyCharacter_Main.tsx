@@ -49,10 +49,20 @@ export default function MyCharacter_Main() {
   }, []);
 
   useEffect(() => {
+    const test = [];
+    console.log(FilterCharacterInfo);
     FilterCharacterInfo.map((data) => {
-      CharacterProfileAPI(data.CharacterName, setProfileData, ProfileData);
+      const testValue = CharacterProfileAPI(data.CharacterName); // 이게 response라고 생각하기.
+      const getData = () => {
+        testValue.then((data) => {
+          test.push(data.data);
+          setProfileData(test);
+        });
+      };
+
+      getData();
+      console.log(ProfileData);
     });
-    console.log(ProfileData);
   }, [FilterCharacterInfo]);
 
   return (
@@ -83,16 +93,6 @@ export default function MyCharacter_Main() {
 
           const profileImage = "테스트"; // 임시로 설정된 프로필 이미지
 
-          // CharacterProfileAPI(data.CharacterName)
-          //   .then((response) => {
-          //     profileResponse = response; // 응답을 저장
-          //     console.log(profileResponse);
-          //     data2.push(response.CharacterClassName);
-          //   })
-          //   .catch((error) => {
-          //     console.log(error); // 에러 처리
-          //   });
-          // console.log(data2);
           return (
             <CharacterInfoBox key={uniqueKey}>
               <CharacterImageArea>{profileImage}</CharacterImageArea>
