@@ -117,6 +117,9 @@ export default function MyCharacter_Main() {
             <CharacterInfoBox key={uniqueKey}>
               <CharacterImageArea
                 characterImage={CharacterImage[0]?.image}
+                onClick={() => {
+                  console.log("AA");
+                }}
               ></CharacterImageArea>
               <CharacterInfoTextArea>
                 <NickName>{data.CharacterName}</NickName>
