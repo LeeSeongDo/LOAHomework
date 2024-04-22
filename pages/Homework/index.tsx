@@ -5,11 +5,15 @@ import Homework_SideMenu from "../../src/Components/Homework_SideMenu";
 import { useState } from "react";
 
 export default function Homework(): JSX.Element {
-  const [menu, setMenu] = useState("");
+  const [menu, setMenu] = useState<String>("menu입니다");
+
+  console.log(menu);
 
   return (
     <div>
-      <Homework_SideMenu></Homework_SideMenu>
+      <Homework_SideMenu setMenu={setMenu} />
+
+      <div>옆에 보여질 화면들</div>
     </div>
   );
 }

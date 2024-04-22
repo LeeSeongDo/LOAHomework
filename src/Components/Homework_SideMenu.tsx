@@ -7,13 +7,21 @@
 // => 월 화 수 목 금 토 일 식으로 만들고 체크하는식으로 만들어보자.
 // 5.길드 컨텐츠
 
-export default function Homework_SideMenu(): JSX.Element {
+export default function Homework_SideMenu({
+  setMenu,
+}: {
+  setMenu: React.Dispatch<React.SetStateAction<String>>;
+}): JSX.Element {
+  const ClickEvent = (e: React.MouseEvent<HTMLParagraphElement>) => {
+    setMenu(e.currentTarget.innerText);
+  };
+
   return (
     <div>
-      <p>주간 숙제(레이드, 도가토 도비스)</p>
-      <p>일일 숙제</p>
-      <p>일일 컨텐츠 체크</p>
-      <p>길드 컨텐츠</p>
+      <p onClick={ClickEvent}>주간 숙제(레이드, 도가토 도비스)</p>
+      <p onClick={ClickEvent}>일일 숙제</p>
+      <p onClick={ClickEvent}>일일 컨텐츠 체크</p>
+      <p onClick={ClickEvent}>길드 컨텐츠</p>
     </div>
   );
 }
