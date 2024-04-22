@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -22,9 +18,10 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/api/SearchCharacter.ts", "src/Emotion/HeaderEmotion.ts"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "pages/api/SearchCharacter.ts",
+    "src/Emotion/HeaderEmotion.ts",
+    "pages/_app.js"
+  ],
+  "exclude": ["node_modules"]
 }

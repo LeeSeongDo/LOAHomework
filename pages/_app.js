@@ -1,11 +1,13 @@
-import Header from '.././src/Commons/Header'
-import '../styles/app.css'
+import "../styles/app.css";
+import Header from "../src/Commons/Header";
+import { Global } from "@emotion/react";
+import { globalStyles } from "../src/styles/globalStyles";
+
 export default function App({ Component, pageProps }) {
   return (
-    <div>
+    <>
       <Header></Header>
-      <Component {...pageProps} />  
-    </div>
-    
+      <Component {...pageProps} />
+    </>
   );
 }

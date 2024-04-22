@@ -1,5 +1,7 @@
 // 내 숙제 사이트에서 사용할 사이드 메뉴 입니다.
 
+import { MenuBox, MenuText } from "../Emotion/Homework";
+
 // 필요한 데이터
 // 1.주간 숙제 (레이드 ㄷ)
 // 2.일일 숙제(에포나 의뢰, 카오스 게이트, 가디언 토벌), 휴식 게이지 까지 체크하도록
@@ -17,11 +19,11 @@ export default function Homework_SideMenu({
   };
 
   return (
-    <div>
-      <p onClick={ClickEvent}>주간 숙제(레이드, 도가토 도비스)</p>
-      <p onClick={ClickEvent}>일일 숙제</p>
-      <p onClick={ClickEvent}>일일 컨텐츠 체크</p>
-      <p onClick={ClickEvent}>길드 컨텐츠</p>
-    </div>
+    <MenuBox>
+      <MenuText onClick={ClickEvent}>주간 숙제</MenuText>
+      <MenuText onClick={ClickEvent}>일일 숙제</MenuText>
+      <MenuText onClick={ClickEvent}>일일 컨텐츠</MenuText>
+      <MenuText onClick={ClickEvent}>길드 컨텐츠</MenuText>
+    </MenuBox>
   );
 }
