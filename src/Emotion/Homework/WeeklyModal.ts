@@ -25,7 +25,6 @@ export const AddRaidBox = styled.div`
 
 export const AddArea = styled.div`
   width: 100%;
-  height: 100px;
   margin: 10px 0px;
   box-sizing: border-box;
   border-radius: 10px;

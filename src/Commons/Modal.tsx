@@ -5,9 +5,24 @@ import { NoHomework_RaidCheckBox } from "../Emotion/Homework/WeeklyContentEmotio
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { AddArea, AddRaidBox } from "../Emotion/Homework/WeeklyModal";
 
+interface SelectOption {
+  id: number;
+  name: string;
+  difficulty: {
+    type: string;
+    stages: {
+      stage: string;
+      level: number;
+      gold: number;
+    }[];
+  }[];
+}
+
 export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
   const [showAddArea, setShowAddArea] = useState(false);
-  const [SelectedOption, setSelectedOption] = useState("");
+  const [SelectedOption, setSelectedOption] = useState(RaidData[0].name);
+
+  const [FilterRaidData, setFilterRaidData] = useState<SelectOption[]>([]);
 
   const handleOk = () => {
     setModalBoolean(false);
@@ -15,20 +30,26 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
 
   const handleCancel = () => {
     setModalBoolean(false);
+    setSelectedOption("");
+    setFilterRaidData([]);
   };
 
   const addRaidData = () => {
     setShowAddArea(true);
   };
 
+  useEffect(() => {
+    const FilterData: SelectOption[] = RaidData.filter(
+      (data) => data.name === SelectedOption
+    ) as SelectOption[];
+
+    setFilterRaidData(FilterData);
+    console.log(FilterRaidData);
+  }, [SelectedOption]);
+
   const SelectedEvent = (e) => {
-    console.log(SelectedOption);
     setSelectedOption(e.target.value);
   };
-
-  useEffect(() => {
-    console.log(SelectedOption);
-  }, [SelectedOption]);
 
   return (
     <>
@@ -45,6 +66,7 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
             추가하기
           </Button>,
         ]}
+        style={{ maxHeight: "80vh" }}
       >
         {/* 추천 레이드 */}
         <div>
@@ -64,13 +86,33 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
         {showAddArea === true ? (
           <AddArea>
             <select value={SelectedOption} onChange={SelectedEvent}>
+              <option>레이드 선택하기</option>
               {RaidData.map((data) => (
                 <option key={data.id}>{data.name}</option>
               ))}
             </select>
 
             {/* 레이드 관문 div */}
-            <div></div>
+            {FilterRaidData.map((raid) => (
+              <div key={raid.id}>
+                <h4>{raid.name}</h4>
+                {raid.difficulty.map((difficulty) => (
+                  <div key={difficulty.type}>
+                    <h5>{difficulty.type}</h5>
+                    <ul>
+                      {difficulty.stages.map((stage, index) => (
+                        <li key={index}>
+                          {index + 1}관문
+                          <p>
+                            {stage.level}, Gold:{stage.gold}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ))}
           </AddArea>
         ) : (
           ""
