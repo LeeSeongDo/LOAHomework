@@ -59,28 +59,38 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
   // 관문 데이터를 추가하는 함수
   const AddStage = (raid, difficult, stage, index) => {
     return () => {
-      const updatedStage = { ...stage, clickBoolean: !stage.clickBoolean }; // 클릭할 때마다 clickBoolean 값을 반전시킴
+      
       let data: HomeworkType = {
         id: index,
         name: raid.name, // 레이드 이름
-        stage: updatedStage.stage,
-        level: updatedStage.level,
-        gold: updatedStage.gold,
-        clickBoolean: updatedStage.clickBoolean, // 반전된 값을 사용
+        stage: stage.stage, // 선택한 레이드 관문 
+        level: stage.level, // 선택한 레이드 입장 레벨
+        gold: stage.gold, // 선택한 레이드 클리어 골드 
+        clickBoolean: stage.clickBoolean, // 현재 클릭했는지 여부
       };
 
       if (StageSaveData.length >= 1) {
         StageSaveData.map((data2) => {
           if (data2.name === data.name && data2.stage === data.stage) {
+            // 동일한 값이 있다면 
             console.log("동일값이 있다. 추가 안할거야");
-            console.log(StageSaveData);
-          } else {
-            StageSaveData.push(data);
-            console.log("성공적으로 추가됨");
-            console.log(StageSaveData);
+          } 
+
+      
+          // 참이면 거짓으로 만들기.
+          if (data2.clickBoolean === true)
+          {
+            // 참인 상태에서 눌렀다면
+            StageSaveData[data2.id].clickBoolean = false;
+            console.log(data2.clickBoolean)
+          } else if(data2.clickBoolean === false) {
+            StageSaveData[data2.id].clickBoolean = true;
+            console.log(data2.clickBoolean)
           }
         });
-      } else {
+        
+      } else  {
+        data.clickBoolean = true;
         StageSaveData.push(data);
         console.log("성공적으로 추가됨");
         console.log(StageSaveData);
@@ -94,7 +104,6 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
     ) as SelectOption[];
 
     setFilterRaidData(FilterData);
-    console.log(FilterRaidData);
   }, [SelectedOption]);
 
   const SelectedEvent = (e) => {
