@@ -3,7 +3,16 @@ import { Button, Modal as LoaModal } from "antd";
 import { RaidData } from "../../pages/Data/RaidData";
 import { NoHomework_RaidCheckBox } from "../Emotion/Homework/WeeklyContentEmotion";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { AddArea, AddRaidBox } from "../Emotion/Homework/WeeklyModal";
+import {
+  AddArea,
+  AddRaidBox,
+  Difficulty,
+  LevelAndGold,
+  RaidArea,
+  StageArea,
+  StageBox,
+  StageElement,
+} from "../Emotion/Homework/WeeklyModal";
 
 interface SelectOption {
   id: number;
@@ -54,7 +63,7 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
   return (
     <>
       <LoaModal
-        title="주간 숙제 추가"
+        title="주간 레이드 추가하기"
         open={ModalBoolean}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -66,57 +75,58 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
             추가하기
           </Button>,
         ]}
-        style={{ maxHeight: "80vh" }}
+        width={650}
       >
         {/* 추천 레이드 */}
-        <div>
+        {/* <div>
           <h3>창녕갈릭치킨버거님을 위한 추천 레이드</h3>
           <button>혼돈의 상아탑(하드)</button>
           <button>카멘(하드)</button>
           <button>에키드나(하드)</button>
-        </div>
+        </div> */}
 
-        <div>
+        {/* <div>
           <AddRaidBox onClick={addRaidData}>
             <PlusCircleOutlined />
             <span>레이드 추가하기</span>
           </AddRaidBox>
-        </div>
+        </div> */}
+        <p>레이드를 선택하세요</p>
 
-        {showAddArea === true ? (
-          <AddArea>
-            <select value={SelectedOption} onChange={SelectedEvent}>
-              <option>레이드 선택하기</option>
-              {RaidData.map((data) => (
-                <option key={data.id}>{data.name}</option>
-              ))}
-            </select>
-
-            {/* 레이드 관문 div */}
-            {FilterRaidData.map((raid) => (
-              <div key={raid.id}>
-                <h4>{raid.name}</h4>
-                {raid.difficulty.map((difficulty) => (
-                  <div key={difficulty.type}>
-                    <h5>{difficulty.type}</h5>
-                    <ul>
-                      {difficulty.stages.map((stage, index) => (
-                        <li key={index}>
-                          {index + 1}관문
-                          <p>
-                            {stage.level}, Gold:{stage.gold}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+        <AddArea>
+          <select value={SelectedOption} onChange={SelectedEvent}>
+            <option>레이드 선택하기</option>
+            {RaidData.map((data) => (
+              <option key={data.id}>{data.name}</option>
             ))}
-          </AddArea>
-        ) : (
-          ""
-        )}
+          </select>
+
+          {/* 레이드 관문 div */}
+          {FilterRaidData.map((raid) => (
+            <RaidArea key={raid.id}>
+              {raid.difficulty.map((difficulty) => (
+                <StageArea key={difficulty.type}>
+                  <Difficulty>
+                    {difficulty.type === "normal" ? "노말" : "하드"}
+                  </Difficulty>
+
+                  <StageBox>
+                    {difficulty.stages.map((stage, index) => (
+                      <StageElement key={index}>
+                        <div>{index + 1}관문</div>
+
+                        <LevelAndGold>
+                          <p>{stage.level}</p>
+                          <p>{stage.gold}G</p>
+                        </LevelAndGold>
+                      </StageElement>
+                    ))}
+                  </StageBox>
+                </StageArea>
+              ))}
+            </RaidArea>
+          ))}
+        </AddArea>
       </LoaModal>
     </>
   );
