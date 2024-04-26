@@ -6,15 +6,15 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1415, gold: 500 },
-          { stage: "stage2", level: 1415, gold: 700 },
+          { stage: "1관문", level: 1415, gold: 500, clickBoolean: false },
+          { stage: "2관문", level: 1415, gold: 700, clickBoolean: false },
         ],
       },
       {
         type: "hard",
         stages: [
-          { stage: "stage1", level: 1445, gold: 700 },
-          { stage: "stage2", level: 1445, gold: 1100 },
+          { stage: "1관문", level: 1445, gold: 700, clickBoolean: false },
+          { stage: "2관문", level: 1445, gold: 1100, clickBoolean: false },
         ],
       },
     ],
@@ -26,15 +26,15 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1430, gold: 600 },
-          { stage: "stage2", level: 1430, gold: 1000 },
+          { stage: "1관문", level: 1430, gold: 600, clickBoolean: false },
+          { stage: "2관문", level: 1430, gold: 1000, clickBoolean: false },
         ],
       },
       {
         type: "hard",
         stages: [
-          { stage: "stage1", level: 1460, gold: 900 },
-          { stage: "stage2", level: 1460, gold: 1500 },
+          { stage: "1관문", level: 1460, gold: 900, clickBoolean: false },
+          { stage: "2관문", level: 1460, gold: 1500, clickBoolean: false },
         ],
       },
     ],
@@ -46,9 +46,9 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1475, gold: 600 },
-          { stage: "stage2", level: 1475, gold: 900 },
-          { stage: "stage3", level: 1475, gold: 1500 },
+          { stage: "1관문", level: 1475, gold: 600, clickBoolean: false },
+          { stage: "2관문", level: 1475, gold: 900, clickBoolean: false },
+          { stage: "3관문", level: 1475, gold: 1500, clickBoolean: false },
         ],
       },
     ],
@@ -60,19 +60,19 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1490, gold: 1500 },
-          { stage: "stage2", level: 1490, gold: 1500 },
-          { stage: "stage3", level: 1500, gold: 1500 },
-          { stage: "stage4", level: 1520, gold: 2500 },
+          { stage: "1관문", level: 1490, gold: 1500, clickBoolean: false },
+          { stage: "2관문", level: 1490, gold: 1500, clickBoolean: false },
+          { stage: "3관문", level: 1500, gold: 1500, clickBoolean: false },
+          { stage: "4관문", level: 1520, gold: 2500, clickBoolean: false },
         ],
       },
       {
         type: "hard",
         stages: [
-          { stage: "stage1", level: 1540, gold: 2000 },
-          { stage: "stage2", level: 1540, gold: 2000 },
-          { stage: "stage3", level: 1550, gold: 2000 },
-          { stage: "stage4", level: 1560, gold: 3000 },
+          { stage: "1관문", level: 1540, gold: 2000, clickBoolean: false },
+          { stage: "2관문", level: 1540, gold: 2000, clickBoolean: false },
+          { stage: "3관문", level: 1550, gold: 2000, clickBoolean: false },
+          { stage: "4관문", level: 1560, gold: 3000, clickBoolean: false },
         ],
       },
     ],
@@ -84,17 +84,17 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1540, gold: 1000 },
-          { stage: "stage2", level: 1540, gold: 1500 },
-          { stage: "stage3", level: 1540, gold: 2000 },
+          { stage: "1관문", level: 1540, gold: 1000, clickBoolean: false },
+          { stage: "2관문", level: 1540, gold: 1500, clickBoolean: false },
+          { stage: "3관문", level: 1540, gold: 2000, clickBoolean: false },
         ],
       },
       {
         type: "hard",
         stages: [
-          { stage: "stage1", level: 1580, gold: 1500 },
-          { stage: "stage2", level: 1580, gold: 2000 },
-          { stage: "stage3", level: 1580, gold: 3000 },
+          { stage: "1관문", level: 1580, gold: 1500, clickBoolean: false },
+          { stage: "2관문", level: 1580, gold: 2000, clickBoolean: false },
+          { stage: "3관문", level: 1580, gold: 3000, clickBoolean: false },
         ],
       },
     ],
@@ -106,17 +106,17 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1580, gold: 1500 },
-          { stage: "stage2", level: 1580, gold: 2000 },
-          { stage: "stage3", level: 1580, gold: 4000 },
+          { stage: "1관문", level: 1580, gold: 1500, clickBoolean: false },
+          { stage: "2관문", level: 1580, gold: 2000, clickBoolean: false },
+          { stage: "3관문", level: 1580, gold: 4000, clickBoolean: false },
         ],
       },
       {
         type: "hard",
         stages: [
-          { stage: "stage1", level: 1600, gold: 1750 },
-          { stage: "stage2", level: 1600, gold: 2500 },
-          { stage: "stage3", level: 1600, gold: 5750 },
+          { stage: "1관문", level: 1600, gold: 1750, clickBoolean: false },
+          { stage: "2관문", level: 1600, gold: 2500, clickBoolean: false },
+          { stage: "3관문", level: 1600, gold: 5750, clickBoolean: false },
         ],
       },
     ],
@@ -128,19 +128,19 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1600, gold: 1500 },
-          { stage: "stage2", level: 1600, gold: 1750 },
-          { stage: "stage3", level: 1600, gold: 2500 },
-          { stage: "stage4", level: 1600, gold: 3250 },
+          { stage: "1관문", level: 1600, gold: 1500, clickBoolean: false },
+          { stage: "2관문", level: 1600, gold: 1750, clickBoolean: false },
+          { stage: "3관문", level: 1600, gold: 2500, clickBoolean: false },
+          { stage: "4관문", level: 1600, gold: 3250, clickBoolean: false },
         ],
       },
       {
         type: "hard",
         stages: [
-          { stage: "stage1", level: 1620, gold: 2000 },
-          { stage: "stage2", level: 1620, gold: 2500 },
-          { stage: "stage3", level: 1620, gold: 4000 },
-          { stage: "stage4", level: 1620, gold: 6000 },
+          { stage: "1관문", level: 1620, gold: 2000, clickBoolean: false },
+          { stage: "2관문", level: 1620, gold: 2500, clickBoolean: false },
+          { stage: "3관문", level: 1620, gold: 4000, clickBoolean: false },
+          { stage: "4관문", level: 1620, gold: 6000, clickBoolean: false },
         ],
       },
     ],
@@ -152,18 +152,18 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1610, gold: 3500 },
-          { stage: "stage2", level: 1610, gold: 4000 },
-          { stage: "stage3", level: 1610, gold: 5500 },
+          { stage: "1관문", level: 1610, gold: 3500, clickBoolean: false },
+          { stage: "2관문", level: 1610, gold: 4000, clickBoolean: false },
+          { stage: "3관문", level: 1610, gold: 5500, clickBoolean: false },
         ],
       },
       {
         type: "hard",
         stages: [
-          { stage: "stage1", level: 1630, gold: 5000 },
-          { stage: "stage2", level: 1630, gold: 6000 },
-          { stage: "stage3", level: 1630, gold: 9000 },
-          { stage: "stage4", level: 1630, gold: 21000 },
+          { stage: "1관문", level: 1630, gold: 5000, clickBoolean: false },
+          { stage: "2관문", level: 1630, gold: 6000, clickBoolean: false },
+          { stage: "3관문", level: 1630, gold: 9000, clickBoolean: false },
+          { stage: "4관문", level: 1630, gold: 21000, clickBoolean: false },
         ],
       },
     ],
@@ -175,15 +175,15 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1620, gold: 5000 },
-          { stage: "stage2", level: 1620, gold: 9500 },
+          { stage: "1관문", level: 1620, gold: 5000, clickBoolean: false },
+          { stage: "2관문", level: 1620, gold: 9500, clickBoolean: false },
         ],
       },
       {
         type: "hard",
         stages: [
-          { stage: "stage1", level: 1630, gold: 6000 },
-          { stage: "stage2", level: 1630, gold: 12500 },
+          { stage: "1관문", level: 1630, gold: 6000, clickBoolean: false },
+          { stage: "2관문", level: 1630, gold: 12500, clickBoolean: false },
         ],
       },
     ],
@@ -195,8 +195,8 @@ export const RaidData = [
       {
         type: "normal",
         stages: [
-          { stage: "stage1", level: 1640, gold: 7000 },
-          { stage: "stage2", level: 1640, gold: 14500 },
+          { stage: "1관문", level: 1640, gold: 7000, clickBoolean: false },
+          { stage: "2관문", level: 1640, gold: 14500, clickBoolean: false },
         ],
       },
     ],

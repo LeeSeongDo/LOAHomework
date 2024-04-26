@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import { Button, Modal as LoaModal } from "antd";
 import { RaidData } from "../../pages/Data/RaidData";
 import { NoHomework_RaidCheckBox } from "../Emotion/Homework/WeeklyContentEmotion";
@@ -27,24 +27,65 @@ interface SelectOption {
   }[];
 }
 
-export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
-  const [showAddArea, setShowAddArea] = useState(false);
-  const [SelectedOption, setSelectedOption] = useState(RaidData[0].name);
+interface HomeworkType {
+  id: number;
+  name: string; // 레이드 이름
+  stage: string;
+  level: number;
+  gold: number;
+  clickBoolean: boolean;
+}
 
+export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
+  const [showAddArea, setShowAddArea] = useState<Boolean>(false);
+  const [SelectedOption, setSelectedOption] = useState<String>(
+    RaidData[0].name
+  );
   const [FilterRaidData, setFilterRaidData] = useState<SelectOption[]>([]);
 
-  const handleOk = () => {
+  const [SaveHomeworkData, setSaveHomeworkData] = useState([]);
+  const [StageSaveData, setStageSaveData] = useState([]);
+
+  const handleOk = (): void => {
     setModalBoolean(false);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     setModalBoolean(false);
     setSelectedOption("");
     setFilterRaidData([]);
   };
 
-  const addRaidData = () => {
-    setShowAddArea(true);
+  // 관문 데이터를 추가하는 함수
+  const AddStage = (raid, difficult, stage, index) => {
+    return () => {
+      const updatedStage = { ...stage, clickBoolean: !stage.clickBoolean }; // 클릭할 때마다 clickBoolean 값을 반전시킴
+      let data: HomeworkType = {
+        id: index,
+        name: raid.name, // 레이드 이름
+        stage: updatedStage.stage,
+        level: updatedStage.level,
+        gold: updatedStage.gold,
+        clickBoolean: updatedStage.clickBoolean, // 반전된 값을 사용
+      };
+
+      if (StageSaveData.length >= 1) {
+        StageSaveData.map((data2) => {
+          if (data2.name === data.name && data2.stage === data.stage) {
+            console.log("동일값이 있다. 추가 안할거야");
+            console.log(StageSaveData);
+          } else {
+            StageSaveData.push(data);
+            console.log("성공적으로 추가됨");
+            console.log(StageSaveData);
+          }
+        });
+      } else {
+        StageSaveData.push(data);
+        console.log("성공적으로 추가됨");
+        console.log(StageSaveData);
+      }
+    };
   };
 
   useEffect(() => {
@@ -77,24 +118,10 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
         ]}
         width={650}
       >
-        {/* 추천 레이드 */}
-        {/* <div>
-          <h3>창녕갈릭치킨버거님을 위한 추천 레이드</h3>
-          <button>혼돈의 상아탑(하드)</button>
-          <button>카멘(하드)</button>
-          <button>에키드나(하드)</button>
-        </div> */}
-
-        {/* <div>
-          <AddRaidBox onClick={addRaidData}>
-            <PlusCircleOutlined />
-            <span>레이드 추가하기</span>
-          </AddRaidBox>
-        </div> */}
         <p>레이드를 선택하세요</p>
 
         <AddArea>
-          <select value={SelectedOption} onChange={SelectedEvent}>
+          <select onChange={SelectedEvent}>
             <option>레이드 선택하기</option>
             {RaidData.map((data) => (
               <option key={data.id}>{data.name}</option>
@@ -112,7 +139,10 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
 
                   <StageBox>
                     {difficulty.stages.map((stage, index) => (
-                      <StageElement key={index}>
+                      <StageElement
+                        key={index}
+                        onClick={AddStage(raid, difficulty, stage, index)}
+                      >
                         <div>{index + 1}관문</div>
 
                         <LevelAndGold>
