@@ -44,7 +44,7 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
   const [FilterRaidData, setFilterRaidData] = useState<SelectOption[]>([]);
 
   const [SaveHomeworkData, setSaveHomeworkData] = useState([]);
-  const [StageSaveData, setStageSaveData] = useState([]);
+  let [StageSaveData, setStageSaveData] = useState([]);
 
   const handleOk = (): void => {
     setModalBoolean(false);
@@ -70,30 +70,28 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
       };
 
       if (StageSaveData.length >= 1) {
-        StageSaveData.map((data2) => {
-          if (data2.name === data.name && data2.stage === data.stage) {
-            // 동일한 값이 있다면 
-            console.log("동일값이 있다. 추가 안할거야");
-          } 
+            const test = StageSaveData.filter((data2) => (data2.name === data.name) && (data2.stage === data.stage));
+            if(test.length === 1)
+            {
+              console.log(test.length);
+              const test2 = StageSaveData.filter((data2) => (data2.name === data.name) && (data2.stage !== data.stage));
+              StageSaveData = test2;
+  
+            } else if(test.length === 0)
+            {
+              // test에 없는거면 등록
+              StageSaveData.push(data);
+            } 
+            if(StageSaveData.length >= 2)
+            {
+              let sortTest = StageSaveData.sort((a, b) => a.id - b.id);
+              setStageSaveData(sortTest);
+            }
 
-      
-          // 참이면 거짓으로 만들기.
-          if (data2.clickBoolean === true)
-          {
-            // 참인 상태에서 눌렀다면
-            StageSaveData[data2.id].clickBoolean = false;
-            console.log(data2.clickBoolean)
-          } else if(data2.clickBoolean === false) {
-            StageSaveData[data2.id].clickBoolean = true;
-            console.log(data2.clickBoolean)
-          }
-        });
-        
       } else  {
-        data.clickBoolean = true;
+        data.clickBoolean = true
         StageSaveData.push(data);
         console.log("성공적으로 추가됨");
-        console.log(StageSaveData);
       }
     };
   };
@@ -166,6 +164,7 @@ export default function Modal({ ModalBoolean, setModalBoolean }): JSX.Element {
             </RaidArea>
           ))}
         </AddArea>
+        <button onClick={() => {console.log(StageSaveData)}}>11</button>
       </LoaModal>
     </>
   );
